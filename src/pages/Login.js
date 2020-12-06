@@ -1,8 +1,18 @@
 import { Link } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import './login.css'
 
-function login() {
+function Login() {
+    const [email , setEmail] = useState('')
+    const [password , setPassword] = useState('')
+
+    const signIn = (e) =>{
+        e.preventDefault()
+    }
+    const register = (e) =>{
+        e.preventDefault()
+    }
+
     return (
         <div className="login">
             <Link>
@@ -10,18 +20,18 @@ function login() {
             </Link>
             <div className="login__container">
                 <h1>Sign-in</h1>
-                <form>
+                <form >
                     <h5>Email</h5>
-                    <input type="text"/>
+                    <input type="text" required value={email} onChange={e => setEmail(e.target.value)} />
                     <h5>Password</h5>
-                    <input type="password"/>
-                    <button className="sign-in__btn">Sign in</button>
+                    <input type="password" required value={password} onChange={e => setPassword(e.target.value)} />
+                    <button type="submit" onSubmit={signIn}  className="sign-in__btn">Sign in</button>
                 </form>
                 <p>By signing in you agree to this Amazon clone conditions of use & sell . Actually there is no conditions or something , this is just a non-commercial project</p>
-                <button className="login__btn">Create you account</button>
-            </div>
+                <button onClick={register} className="login__btn">Create you account</button>
+            </div>                                                   
         </div> 
     )
 }
 
-export default login
+export default Login
