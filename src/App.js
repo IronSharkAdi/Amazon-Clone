@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Home from './pages/Home';
+import Checkout from './pages/Checkout';
+import Login from './pages/Login';
 
+
+import { BrowserRouter as Router , Switch , Route    } from 'react-router-dom'
+ 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // Wrapping with Router and Switch so that we can visit many pages
+    <Router>
+    <div className="app">
+                     {/* The header is outside the switch cause it has to be rendered in every page*/}
+      <Switch> 
+        {/* The login page link */}
+        <Route path="/login">                 
+          <Login/>
+        </Route>
+      
+        {/* The checkout page link */}
+        <Route path="/checkout"> 
+          <Header/>                  
+          <Checkout/>
+        </Route>
+
+
+
+        {/* The home page link */}
+        <Route path="/">
+          <Header/>        
+          <Home/>
+        </Route>
+
+      </Switch>
     </div>
+    </Router>
   );
 }
-
 export default App;
