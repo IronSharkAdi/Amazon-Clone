@@ -3,11 +3,24 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login';
-
-
 import { BrowserRouter as Router , Switch , Route    } from 'react-router-dom'
+import Register from './pages/Register';
+import { useEffect } from 'react';
+import { auth } from './firebase';
  
 function App() {
+
+    useEffect(() => {
+        auth.onAuthStateChanged(authUser =>{
+          if(authUser){
+
+          } else {
+            
+          }
+        })
+    }, [])
+
+
   return (
     // Wrapping with Router and Switch so that we can visit many pages
     <Router>
@@ -17,6 +30,11 @@ function App() {
         {/* The login page link */}
         <Route path="/login">                 
           <Login/>
+        </Route>
+
+        {/* The Register page link */}
+        <Route path="/register">                 
+          <Register/>
         </Route>
       
         {/* The checkout page link */}
