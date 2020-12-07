@@ -8,7 +8,7 @@ import { auth } from '../firebase';
 
 
 function Header() {
-    const [ { basket , user , name } , dispatch] = useStateValue()
+    const [ { basket , user , name }] = useStateValue()
     
 
 

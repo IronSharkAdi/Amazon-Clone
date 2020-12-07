@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import './register.css'
-import { db , auth ,base } from '../firebase'
-import firebase from 'firebase';
+import { auth ,base } from '../firebase'
+
 
 function Register() {
     const [email , setEmail] = useState('')
