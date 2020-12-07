@@ -6,16 +6,36 @@ import Login from './pages/Login';
 import { BrowserRouter as Router , Switch , Route    } from 'react-router-dom'
 import Register from './pages/Register';
 import { useEffect } from 'react';
-import { auth } from './firebase';
+import { auth, base } from './firebase';
+import { useStateValue } from './StateProvider';
  
 function App() {
+    const [ { basket , user , name } , dispatch] = useStateValue()
 
     useEffect(() => {
         auth.onAuthStateChanged(authUser =>{
+          
           if(authUser){
+            console.log("the user is " + authUser.uid )
+            base.ref('users/' + authUser.uid).on('value' , (data)=>{
+                const name = data.val().name
+                dispatch({
+                  type : 'SET_NAME',
+                  name : name
+                })
+                console.log(name)
+            })
+              dispatch({
+                type : 'SET_USER',
+                user : authUser
+              })
 
           } else {
-            
+            console.log("no user")
+            dispatch({
+              type : 'SET_USER',
+              user : null
+            })
           }
         })
     }, [])
